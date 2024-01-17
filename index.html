@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <style>
+        @font-face {
+            font-family: 'NorseBold';
+            src: url(../Font/Norse-Bold.otf) format('opentype');
+        }
+
         html,
         body {
             height: 100%;
@@ -16,11 +21,12 @@
 
         #container {
             height: 100%;
-            background-image: url(breno-machado-in9-n0JwgZ0-unsplash.jpg);
+            background-image: url(../img/breno-machado-in9-n0JwgZ0-unsplash.jpg);
             background-size: 100%;
             font-family: 'Roboto Mono';
 
         }
+
 
         #flex-container {
             display: flex;
@@ -51,6 +57,15 @@
             border-top: 1px dotted white;
             border-bottom: 1px dotted white;
 
+        }
+
+        #logo {
+            margin-top: 25%;
+            font-size: 10rem;
+            background-color: rgba(0, 0, 0, 0.137);
+            text-align: center;
+            color: white;
+            font-family: 'NorseBold';
         }
 
         #postscript {
@@ -85,18 +100,20 @@
 
         form>div {
             flex: 1;
-
+            gap: 20px;
         }
 
         #form {
             padding: 0 50px;
             color: white;
             display: flex;
-            
-            align-items: center;
-            
 
+            align-items: center;
+
+            
         }
+
+        
 
         .inputs {
             flex: 1;
@@ -104,6 +121,7 @@
             flex-direction: column;
             margin: 20px;
             width: 500px;
+            min-height: 120px;
         }
 
         .inputs * {
@@ -115,6 +133,11 @@
             border-radius: 8px;
             border: 2px solid gray;
             background-color: white;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
         }
 
         #create-account {
@@ -140,7 +163,7 @@
         }
 
         button:active {
-            border: 3px solid blue;
+            border: 3px solid orange;
         }
 
         @keyframes flashin-border {
@@ -161,8 +184,7 @@
             from {
                 width: 0%;
             }
-}
-
+        }
     </style>
 </head>
 
@@ -170,57 +192,85 @@
     <div id="container">
         <div id="flex-container">
             <div class="flex-element">
-                <div id="logo"></div>
+                <div id="logo">NICKY</div>
             </div>
             <div class="flex-element">
-                <div id="postscript"><span>This is not a real online service! Lorem ipsum dolor sit amet consectetur! Let's do it!</span></div>
+                <div id="postscript"><span>This is not a real online service! Lorem ipsum dolor sit amet consectetur!
+                        Let's do it!</span></div>
                 <div id="form">
-                    
+
                     <form action="#" method="post" id="createAccForm">
 
                         <div class="form-flex-element">
                             <div class="inputs">
                                 <label for="first_name">FIRST NAME</label>
-                                <input type="text" name="" id="first_name">
+                                <input type="text" name="" id="first_name" required>
+                                <span class="error-message"></span>
                             </div>
                             <div class="inputs">
                                 <label for="email">EMAIL</label>
-                                <input type="email" name="" id="email">
+                                <input type="email" name="" id="email" required>
+                                <span class="error-message"></span>
                             </div>
                             <div class="inputs">
                                 <label for="password">PASSWORD</label>
-                                <input type="password" name="" id="password">
+                                <input type="password" name="" id="password" required>
+                                <span class="error-message"></span>
                             </div>
                         </div>
                         <div class="form-flex-element">
                             <div class="inputs">
                                 <label for="last_name">LAST NAME</label>
-                                <input type="text" name="" id="last_name">
+                                <input type="text" name="" id="last_name" required>
+                                <span class="error-message"></span>
                             </div>
                             <div class="inputs">
                                 <label for="phone_number">PHONE NUMBER</label>
-                                <input type="text" name="" id="phone_number">
+                                <input type="text" name="" id="phone_number" required>
+                                <span class="error-message"></span>
                             </div>
                             <div class="inputs">
                                 <label for="password_confirm">CONFIRM PASSWORD</label>
-                                <input type="password" name="" id="password_confirm">
+                                <input type="password" name="" id="password_confirm" required>
+                                <span class="error-message"></span>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div id="create-account">
                     <button id="form-subm">Create account</button>
+                    <h4>Already have an account? <span style="color: orange;">Log in</span></h4>
                 </div>
             </div>
         </div>
     </div>
     <script>
         let createAcc = document.getElementById('form-subm');
-        createAcc.addEventListener('click',() => {
+        createAcc.addEventListener('click', () => {
             let form = document.getElementById('createAccForm');
+            let inputs = form.querySelectorAll('input');
 
-            form.submit()
-        })
+            let k = 0;
+
+            inputs.forEach(input => {
+                let errorMessage = input.nextElementSibling;
+
+                if (!input.value.trim()) {
+                    errorMessage.innerText = '*Это обязательное поле';
+                    input.style.border = '2px solid red';
+                    k++;
+                } else {
+                    errorMessage.innerText = '';
+                    input.style.border = '2px solid green';
+                }
+
+            });
+            if (k == 0) {
+                form.submit();
+
+            }
+        });
+
     </script>
 </body>
 
