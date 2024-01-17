@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     
+</head>
+
+<body>
+    <div id="container">
+        <div id="flex-container">
+            <div class="flex-element">
+                <div id="logo"></div>
+            </div>
+            <div class="flex-element">
+                <div id="postscript"><span>This is not a real online service! Lorem ipsum dolor sit amet consectetur!</span></div>
+                <div id="form">
+                    <span>Let's do it!</span>
+                    <form action="#" method="post" id="createAccForm">
+
+                        <div class="form-flex-element">
+                            <div class="inputs">
+                                <label for="first_name">FIRST NAME</label>
+                                <input type="text" name="" id="first_name">
+                            </div>
+                            <div class="inputs">
+                                <label for="email">EMAIL</label>
+                                <input type="email" name="" id="email">
+                            </div>
+                            <div class="inputs">
+                                <label for="password">PASSWORD</label>
+                                <input type="password" name="" id="password">
+                            </div>
+                        </div>
+                        <div class="form-flex-element">
+                            <div class="inputs">
+                                <label for="last_name">LAST NAME</label>
+                                <input type="text" name="" id="last_name">
+                            </div>
+                            <div class="inputs">
+                                <label for="phone_number">PHONE NUMBER</label>
+                                <input type="text" name="" id="phone_number">
+                            </div>
+                            <div class="inputs">
+                                <label for="password_confirm">CONFIRM PASSWORD</label>
+                                <input type="password" name="" id="password_confirm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="create-account">
+                    <button id="form-subm">Create account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let createAcc = document.getElementById('form-subm');
+        createAcc.addEventListener('click',() => {
+            let form = document.getElementById('createAccForm');
+
+            form.submit()
+        })
+    </script>
 </body>
+
 </html>
